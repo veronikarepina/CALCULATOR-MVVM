@@ -2,24 +2,20 @@ package com.example.calculator
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.widget.TextView
 import androidx.activity.viewModels
 import com.example.calculator.databinding.ActivityMainBinding
-import net.objecthunter.exp4j.ExpressionBuilder
-import java.math.*
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private val viewModel by viewModels<CalcViewModel>()
-    lateinit var result: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        result = binding.textResult.text.toString()
 
-        viewModel.answer.observe(this, {binding.textResult.text = it})
+        viewModel.answer.observe(this, { binding.textResult.text = it })
+        viewModel.buttonC.observe(this, { deleteButtonC() })
+        viewModel.buttonAC.observe(this, { deleteButtonAC() })
 
         binding.deleteButton.setOnClickListener {
             viewModel.delete()
@@ -80,5 +76,11 @@ class MainActivity : AppCompatActivity() {
         binding.signButton.setOnClickListener {
             viewModel.signChange()
         }
+    }
+    fun deleteButtonC() {
+        binding.deleteButton.text = getString(R.string.string_c)
+    }
+    fun deleteButtonAC() {
+        binding.deleteButton.text = getString(R.string.string_ac)
     }
 }

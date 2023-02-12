@@ -9,6 +9,8 @@ import java.math.MathContext
 
 class CalcViewModel: ViewModel(){
     val answer = MutableLiveData<String>()
+    val buttonC = MutableLiveData<Boolean>()
+    val buttonAC = MutableLiveData<Boolean>()
     private var firstText = ""
     private var secondText = ""
     private val actions = listOf("+", "-", "*", "/", "=")
@@ -20,13 +22,7 @@ class CalcViewModel: ViewModel(){
         answer.value = "0"
     }
 
-//    fun deleteButtonC(){
-//        binding.deleteButton.text = "C"
-//    }
-//    fun deleteButtonAC(){
-//        binding.deleteButton.text = "AC"
-//    }
-    fun numberSplit(text: String): String{ //функция разбивает число на сотни (1000 -> 1 000)
+    private fun numberSplit(text: String): String{ //функция разбивает число на сотни (1000 -> 1 000)
         var result = text
         val textList: MutableList<Char> = result.toMutableList() //создание изменяемого списка
         val space = ' '
@@ -47,13 +43,12 @@ class CalcViewModel: ViewModel(){
         result = textList.joinToString(separator) //преобразуем список в строку
         return result
     }
-    fun textToShow(text: String):String{ //функция преобразовывает число в нужный формат для вывода. Это число для отображения
+    private fun textToShow(text: String):String{ //функция преобразовывает число в нужный формат для вывода. Это число для отображения
         var result = text
         if ("." in result || "," in result){
             val textList: MutableList<Char> = result.toMutableList()
             if ("." in result){
                 val indexComma = textList.indexOf('.')
-                Log.d("MyLog", "indexComma $indexComma")
                 when(indexComma == -1){
                     true -> {}
                     false -> textList[indexComma] = ','
@@ -62,14 +57,10 @@ class CalcViewModel: ViewModel(){
             val indexPoint = textList.indexOf(',')
             val firstList = textList.slice(0.. indexPoint - 1)
             val secondList = textList.slice(indexPoint + 1 .. textList.size - 1)
-            Log.d("MyLog", "Before $textList")
-            Log.d("MyLog", "First list $firstList")
-            Log.d("MyLog", "Second list $secondList")
             val separator = ""
             val firstString = firstList.joinToString(separator)
             val secondString = secondList.joinToString(separator)
             result = numberSplit(firstString) + "," + secondString
-            Log.d("MyLog", "First list $result")
         }
         else if (text.length > 3){ //выполняем преобразования в случае, если число состоит более чем из 3 цифр
             result = numberSplit(result)
@@ -80,18 +71,15 @@ class CalcViewModel: ViewModel(){
         }
         return result
     }
-    fun textToCount(text: String): String{ //функция удаляет все пробелы. Число для подсчетов
+    private fun textToCount(text: String): String{ //функция удаляет все пробелы. Число для подсчетов
         val textList: MutableList<Char> = text.toMutableList()
-        Log.d("MyLog", "textList before $textList")
         val space = ' '
         for (i in 0 .. textList.size - 1){
             textList.remove(space)
         }
-        Log.d("MyLog", "textList after $textList")
         if ("," in text){                               //меняем запятую на точку для подсчетов
             val indexComma = textList.indexOf(',')
             textList[indexComma] = '.'
-            Log.d("MyLog", "index comma $indexComma")
         }
         val separator = ""
         return textList.joinToString(separator)
@@ -107,11 +95,11 @@ class CalcViewModel: ViewModel(){
                 true -> {
                     when(textNow == "0"){
                         true -> {
-                            //deleteButtonC()
+                            buttonC.value = true
                             textNow = buttonNumber
                         }
                         false -> {
-                            //deleteButtonC()
+                            buttonC.value = true
                             textNow = (-(buttonNumber.toInt())).toString()
                         }
                     }
@@ -121,7 +109,6 @@ class CalcViewModel: ViewModel(){
         }
         answer.value = textToShow(textNow)
         lastButton = buttonNumber
-        Log.d("MyLog", "lastButton in numbers:$lastButton")
     }
     fun addPoint(fraction: String){
         var textNow = answer.value.toString()
@@ -134,7 +121,7 @@ class CalcViewModel: ViewModel(){
         }
     }
     fun delete(){
-        //deleteButtonAC()
+        buttonAC.value = true
         firstText = ""
         secondText = ""
         lastButton = ""
@@ -142,46 +129,37 @@ class CalcViewModel: ViewModel(){
         lastDigit = ""
         answer.value = "0"
     }
-    fun textLong(text: Double): String{
+    private fun textLong(text: Double): String{
         val resultLong = text.toLong()
         var resultText = ""
-        Log.d("MyLog", "resultLong $resultLong")
         if(text == resultLong.toDouble()){
             resultText = resultLong.toString()
-            Log.d("MyLog", "resultText in true $resultText")
         }
         else{
             resultText = text.toString()
-            Log.d("MyLog", "resultText in false $resultText")
         }
         return resultText
     }
-    fun calculation(text: String): String{
+    private fun calculation(text: String): String{
         var resultText = ""
         try{
             val expression = ExpressionBuilder(text).build()
             val result = expression.evaluate()
-            Log.d("MyLog", "result $result")
             resultText = textLong(result)
         }
         catch (e:Exception) {
             answer.value = "Ошибка"
-            Log.d("Ошибка", "${e.message}")
         }
         return resultText
     }
-    fun countResult(firstOperand: String, secondOperand: String, operator: String): String{ //функция вычисляет
+    private fun countResult(firstOperand: String, secondOperand: String, operator: String): String{ //функция вычисляет
         var resultText = ""                                                                 //результат операции
         if (operator == "/" && secondOperand == "0"){
-            Log.d("MyLog", "operator $operator")
-            Log.d("MyLog", "secondOperand $secondOperand")
             var str = "Error" // REPLACE
-            Log.d("MyLog", "str: $str")
             resultText = str
         }
         else {
             val fullText = firstOperand + operator + secondOperand
-            Log.d("MyLog", "fullText $fullText")
             resultText = calculation(fullText)
         }
         return resultText
@@ -260,7 +238,6 @@ class CalcViewModel: ViewModel(){
         }
     }
     fun equal(){
-        Log.d("MyLog", "LB: $lastButton")
         val textNow = answer.value.toString()
         when(textNow == "Error"){
             true -> {}
@@ -276,33 +253,25 @@ class CalcViewModel: ViewModel(){
                     }
                     val result = countResult(firstText, secondText, lastAction)
                     val decResult = BigDecimal(result, MathContext.DECIMAL32)
-                    Log.d("MyLog", "dec $decResult")
                     answer.value = textToShow(decResult.toString())
                     firstText = ""
                     secondText = ""
                     lastButton = "="
-                    Log.d("MyLog", "im here")
                 }
                 else{
                     secondText = textToCount(textNow) //фиксируем второй операнд
-                    Log.d("MyLog", "SecondText in result: $secondText")
-                    Log.d("MyLog", "firstText in result: $firstText")
                     val result = countResult(firstText, secondText, lastAction)
                     if (result == "Error"){
                         answer.value = result
                     }
                     else {
                         val decResult = BigDecimal(result, MathContext.DECIMAL32)
-                        Log.d("MyLog", "dec $decResult")
                         answer.value = textToShow(decResult.toString()) //считаем и выводим на экран результат
                         lastDigit = secondText
-                        Log.d("MyLog", "lastDigit $lastDigit")
-                        Log.d("MyLog", "lastAction $lastAction")
                     }
                     firstText = ""
                     secondText = ""
                     lastButton = "="
-                    Log.d("MyLog", "No, im here")
                 }
             }
         }
