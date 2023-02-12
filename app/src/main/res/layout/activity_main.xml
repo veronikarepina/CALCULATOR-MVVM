@@ -72,7 +72,10 @@
                     <Button
                         android:id="@+id/signButton"
                         style="@style/lightGrayButton"
-                        android:text="@string/string_sign"
+                        app:icon="@drawable/plus_minus"
+                        app:iconSize="35dp"
+                        app:iconTint="@color/black"
+                        android:paddingLeft="22dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -87,7 +90,10 @@
                     <Button
                         android:id="@+id/percentButton"
                         style="@style/lightGrayButton"
-                        android:text="@string/string_percent"
+                        app:icon="@drawable/percent"
+                        app:iconSize="35dp"
+                        app:iconTint="@color/black"
+                        android:paddingLeft="22dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -102,7 +108,7 @@
                     <Button
                         android:id="@+id/divisionButton"
                         style="@style/orangeButton"
-                        android:text="@string/string_divide"
+                        app:icon="@drawable/divide"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -170,7 +176,7 @@
                     <Button
                         android:id="@+id/multiplicationButton"
                         style="@style/orangeButton"
-                        android:text="@string/string_multiply"
+                        app:icon="@drawable/multiply"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -238,7 +244,7 @@
                     <Button
                         android:id="@+id/subtractionButton"
                         style="@style/orangeButton"
-                        android:text="@string/string_minus"
+                        app:icon="@drawable/minus"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -307,7 +313,7 @@
                     <Button
                         android:id="@+id/additionButton"
                         style="@style/orangeButton"
-                        android:text="@string/string_plus"
+                        app:icon="@drawable/plus"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -360,7 +366,7 @@
                     <Button
                         android:id="@+id/equalsButton"
                         style="@style/orangeButton"
-                        android:text="@string/string_equal"
+                        app:icon="@drawable/equal"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
