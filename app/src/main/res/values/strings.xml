@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">CALCULATOR</string>
+    <string name="string_c">C</string>
+    <string name="string_ac">AC</string>
+    <string name="string_error">Error</string>
+    <string name="string_zero">0</string>
+    <string name="string_one">1</string>
+    <string name="string_two">2</string>
+    <string name="string_three">3</string>
+    <string name="string_four">4</string>
+    <string name="string_five">5</string>
+    <string name="string_six">6</string>
+    <string name="string_seven">7</string>
+    <string name="string_eight">8</string>
+    <string name="string_nine">9</string>
+    <string name="string_equal">=</string>
+    <string name="string_plus">+</string>
+    <string name="string_minus">-</string>
+    <string name="string_multiply">*</string>
+    <string name="string_divide">/</string>
+    <string name="string_percent">%</string>
+    <string name="string_sign">+-</string>
+    <string name="string_comma">,</string>
+</resources>
