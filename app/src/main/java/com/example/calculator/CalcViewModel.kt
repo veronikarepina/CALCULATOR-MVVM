@@ -11,15 +11,21 @@ class CalcViewModel: ViewModel(){
     val answer = MutableLiveData<String>()
     val buttonC = MutableLiveData<Boolean>()
     val buttonAC = MutableLiveData<Boolean>()
+    val error = MutableLiveData<Int>()
+    val buttonFlag = MutableLiveData<Boolean>()
     private var firstText = ""
     private var secondText = ""
     private val actions = listOf("+", "-", "*", "/", "=")
     private var lastButton = ""
     private var lastAction = ""
     private var lastDigit = ""
+    private var errorFlag = false
+    var buttonState: String = ""
+    var errorString = ""
 
     init {
         answer.value = "0"
+        buttonFlag.value = false
     }
 
     private fun numberSplit(text: String): String{ //функция разбивает число на сотни (1000 -> 1 000)
@@ -85,10 +91,11 @@ class CalcViewModel: ViewModel(){
         return textList.joinToString(separator)
     }
     fun addText(buttonNumber: String){ //функция добавления нажатой цифры
-        var textNow = answer.value
+        var textNow = answer.value.toString()
+        buttonFlag.value = false
         if (lastButton in actions && textNow != "0" && textNow != "-0") { //если последняя нажатая кнопка была оператором
-            if (textNow == "Ошибка") lastAction = ""                      //и не была нажата кнопка смены знака
-            textNow = buttonNumber   //то начинаем писать новое число
+            if (errorFlag) lastAction = ""
+            else textNow = buttonNumber   //то начинаем писать новое число //и не была нажата кнопка смены знака
         }
         else {
             when(textNow == "0" || textNow == "-0"){
@@ -111,23 +118,48 @@ class CalcViewModel: ViewModel(){
         lastButton = buttonNumber
     }
     fun addPoint(fraction: String){
+        buttonFlag.value = false
         var textNow = answer.value.toString()
         if ("," in textNow){
             answer.value = textToShow(textNow)
         }
         else {
+            if(textNow == "0" || textNow == "-0") buttonC.value = true
             textNow = textNow + fraction
             answer.value = textToShow(textNow)
         }
     }
+    fun deleteLastDigit(){
+        var textNow = answer.value.toString()
+        if (errorFlag){}
+        else if (textNow == "0" || textNow == "-0"){}
+        else {
+            if (textNow.length == 1){
+                textNow = "0"
+            }
+            else if("-" in textNow && textNow.length == 2){
+                textNow = "-0"
+            }
+            else {
+                Log.d("MyLog", "textNow before: $textNow")
+                Log.d("MyLog", "textLenght before: ${textNow.length}")
+                textNow = textToShow(textNow.replaceFirst(".$".toRegex(), ""))
+                Log.d("MyLog", "textNow after: $textNow")
+                Log.d("MyLog", "textLenght after: ${textNow.length}")
+            }
+        }
+        answer.value = textToShow(textNow)
+    }
     fun delete(){
         buttonAC.value = true
+        errorFlag = false
         firstText = ""
         secondText = ""
         lastButton = ""
         lastAction = ""
         lastDigit = ""
         answer.value = "0"
+        buttonFlag.value = false
     }
     private fun textLong(text: Double): String{
         val resultLong = text.toLong()
@@ -155,8 +187,9 @@ class CalcViewModel: ViewModel(){
     private fun countResult(firstOperand: String, secondOperand: String, operator: String): String{ //функция вычисляет
         var resultText = ""                                                                 //результат операции
         if (operator == "/" && secondOperand == "0"){
-            var str = "Error" // REPLACE
-            resultText = str
+            errorFlag = true
+            error.value = R.string.string_error
+            resultText = errorString
         }
         else {
             val fullText = firstOperand + operator + secondOperand
@@ -166,8 +199,15 @@ class CalcViewModel: ViewModel(){
     }
     fun actionTo(operator: String){
         val textNow = answer.value.toString()
+        if(buttonFlag.value == true){
+            buttonFlag.value = false
+            buttonState = operator
+            buttonFlag.value = true
+        }
+        buttonState = operator
+        buttonFlag.value = true
         if (firstText == "" && (textNow == "0" || textNow == "-0") && lastDigit != "" && lastAction == "=") { // если первый операнд пуст и в рабочее поле ничего не было введено
-            answer.value == textNow                      //то оставляем как есть
+            answer.value = textNow                      //то оставляем как есть
         }
         else {
             when(firstText == ""){ //первый операнд пуст
@@ -190,7 +230,8 @@ class CalcViewModel: ViewModel(){
                         Log.d("MyLog", "lastAction until count:$lastAction")
                         secondText = textToCount(textNow) //фиксируем второй операнд
                         firstText = countResult(firstText, secondText, lastAction)   //в первый операнд записываем результат вычисления
-                        if (firstText == "Error"){
+                        Log.d("MyLog", "res: $firstText")
+                        if (errorFlag){
                             answer.value = firstText
                             firstText = ""
                             lastButton = "="
@@ -212,7 +253,7 @@ class CalcViewModel: ViewModel(){
     fun countPercent(){
         var textNow = answer.value.toString()
         var textCount = 0.0
-        when(textNow == "Error"){
+        when(errorFlag){
             true -> {} //если в рабочем поле "ошибка/error" - ничего не делаем
             false -> {  //иначе
                 when(firstText == ""){
@@ -239,7 +280,7 @@ class CalcViewModel: ViewModel(){
     }
     fun equal(){
         val textNow = answer.value.toString()
-        when(textNow == "Error"){
+        when(errorFlag){
             true -> {}
             false -> {
                 if(lastAction == ""){ //если не была нажата кнопка оператора
@@ -261,7 +302,8 @@ class CalcViewModel: ViewModel(){
                 else{
                     secondText = textToCount(textNow) //фиксируем второй операнд
                     val result = countResult(firstText, secondText, lastAction)
-                    if (result == "Error"){
+                    Log.d("MyLog", "res: $result")
+                    if (errorFlag){
                         answer.value = result
                     }
                     else {
@@ -278,7 +320,7 @@ class CalcViewModel: ViewModel(){
     }
     fun signChange(){
         var textNow = answer.value.toString()
-        when(textNow == "Error"){
+        when(errorFlag){
             true -> {answer.value = "-0"}
             false -> {
                 if (firstText == "" && textNow == "0" || textNow == "-0") { // если первый операнд пуст и в рабочее поле ничего не было введено
