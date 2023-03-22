@@ -15,70 +15,34 @@ class MainActivity : AppCompatActivity(){
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         textView = binding.textResult
-
-        viewModel.answer.observe(this, { binding.textResult.text = it })
-        viewModel.buttonC.observe(this, { deleteButtonC() })
-        viewModel.buttonAC.observe(this, { deleteButtonAC() })
-        viewModel.error.observe(this) { viewModel.errorString = getString(it) }
-        viewModel.buttonFlag.observe(this, { buttonOn(it) })
-        binding.deleteButton.setOnClickListener {
-            viewModel.delete()
+        with(viewModel){
+            answer.observe(this@MainActivity) { binding.textResult.text = it }
+            answer.observe(this@MainActivity) { binding.textResult.text = it }
+            buttonC.observe(this@MainActivity) { deleteButtonC() }
+            buttonAC.observe(this@MainActivity) { deleteButtonAC() }
+            error.observe(this@MainActivity) { viewModel.errorString = getString(it) }
+            buttonFlag.observe(this@MainActivity) { buttonOn(it) }
         }
-        //обработчики нажатия кнопок от 0 до 9
-        binding.zeroButton.setOnClickListener {
-            viewModel.addText(getString(R.string.string_zero))
-        }
-        binding.oneButton.setOnClickListener {
-            viewModel.addText(getString(R.string.string_one))
-        }
-        binding.twoButton.setOnClickListener {
-            viewModel.addText(getString(R.string.string_two))
-        }
-        binding.threeButton.setOnClickListener {
-            viewModel.addText(getString(R.string.string_three))
-        }
-        binding.fourButton.setOnClickListener {
-            viewModel.addText(getString(R.string.string_four))
-        }
-        binding.fiveButton.setOnClickListener {
-            viewModel.addText(getString(R.string.string_five))
-        }
-        binding.sixButton.setOnClickListener {
-            viewModel.addText(getString(R.string.string_six))
-        }
-        binding.sevenButton.setOnClickListener {
-            viewModel.addText(getString(R.string.string_seven))
-        }
-        binding.eightButton.setOnClickListener {
-            viewModel.addText(getString(R.string.string_eight))
-        }
-        binding.nineButton.setOnClickListener {
-            viewModel.addText(getString(R.string.string_nine))
-        }
-        binding.floatButton.setOnClickListener {
-            viewModel.addPoint(getString(R.string.string_comma))
-        }
-        //обработчики кнопок +,-,*,/,%
-        binding.additionButton.setOnClickListener {
-            viewModel.actionTo(getString(R.string.string_plus))
-        }
-        binding.subtractionButton.setOnClickListener {
-            viewModel.actionTo(getString(R.string.string_minus))
-        }
-        binding.multiplicationButton.setOnClickListener {
-            viewModel.actionTo(getString(R.string.string_multiply))
-        }
-        binding.divisionButton.setOnClickListener {
-            viewModel.actionTo(getString(R.string.string_divide))
-        }
-        binding.percentButton.setOnClickListener {
-            viewModel.countPercent()
-        }
-        binding.equalsButton.setOnClickListener {//обработчик кнопки =
-            viewModel.equal()
-        }
-        binding.signButton.setOnClickListener {
-            viewModel.signChange()
+        with(binding){
+            deleteButton.setOnClickListener { viewModel.delete() }
+            zeroButton.setOnClickListener { viewModel.addText(getString(R.string.string_zero)) }
+            oneButton.setOnClickListener { viewModel.addText(getString(R.string.string_one)) }
+            twoButton.setOnClickListener { viewModel.addText(getString(R.string.string_two)) }
+            threeButton.setOnClickListener { viewModel.addText(getString(R.string.string_three)) }
+            fourButton.setOnClickListener { viewModel.addText(getString(R.string.string_four)) }
+            fiveButton.setOnClickListener { viewModel.addText(getString(R.string.string_five)) }
+            sixButton.setOnClickListener { viewModel.addText(getString(R.string.string_six)) }
+            sevenButton.setOnClickListener { viewModel.addText(getString(R.string.string_seven)) }
+            eightButton.setOnClickListener { viewModel.addText(getString(R.string.string_eight)) }
+            nineButton.setOnClickListener { viewModel.addText(getString(R.string.string_nine)) }
+            floatButton.setOnClickListener { viewModel.addPoint(getString(R.string.string_comma)) }
+            additionButton.setOnClickListener { viewModel.actionTo(getString(R.string.string_plus)) }
+            subtractionButton.setOnClickListener { viewModel.actionTo(getString(R.string.string_minus)) }
+            multiplicationButton.setOnClickListener { viewModel.actionTo(getString(R.string.string_multiply)) }
+            divisionButton.setOnClickListener { viewModel.actionTo(getString(R.string.string_divide)) }
+            percentButton.setOnClickListener { viewModel.countPercent() }
+            equalsButton.setOnClickListener { viewModel.equal() }
+            signButton.setOnClickListener { viewModel.signChange() }
         }
         textView.setOnTouchListener(object: SwipeListener(this@MainActivity){
             override fun onSwipe() {
@@ -86,7 +50,7 @@ class MainActivity : AppCompatActivity(){
             }
         })
     }
-    fun buttonOn(it: Boolean){
+    private fun buttonOn(it: Boolean){
         when(it){
             true -> {
                 when(viewModel.buttonState){
@@ -130,10 +94,10 @@ class MainActivity : AppCompatActivity(){
             }
         }
     }
-    fun deleteButtonC() {
+    private fun deleteButtonC() {
         binding.deleteButton.text = getString(R.string.string_c)
     }
-    fun deleteButtonAC() {
+    private fun deleteButtonAC() {
         binding.deleteButton.text = getString(R.string.string_ac)
     }
 }
