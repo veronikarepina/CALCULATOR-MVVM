@@ -12,6 +12,8 @@ class CalcViewModel: ViewModel(){
     val buttonAC = MutableLiveData<Boolean>()
     val error = MutableLiveData<Int>()
     val buttonFlag = MutableLiveData<Boolean>()
+    var buttonState: String = ""
+    var errorString = ""
     private var firstText = ""
     private var secondText = ""
     private val actions = listOf("+", "-", "*", "/", "=")
@@ -19,8 +21,6 @@ class CalcViewModel: ViewModel(){
     private var lastAction = ""
     private var lastDigit = ""
     private var errorFlag = false
-    var buttonState: String = ""
-    var errorString = ""
     init {
         answer.value = "0"
         buttonFlag.value = false

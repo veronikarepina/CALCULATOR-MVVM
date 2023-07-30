@@ -17,7 +17,6 @@ class MainActivity : AppCompatActivity(){
         textView = binding.textResult
         with(viewModel){
             answer.observe(this@MainActivity) { binding.textResult.text = it }
-            answer.observe(this@MainActivity) { binding.textResult.text = it }
             buttonC.observe(this@MainActivity) { deleteButtonC() }
             buttonAC.observe(this@MainActivity) { deleteButtonAC() }
             error.observe(this@MainActivity) { viewModel.errorString = getString(it) }
@@ -38,7 +37,7 @@ class MainActivity : AppCompatActivity(){
             floatButton.setOnClickListener { viewModel.addPoint(getString(R.string.string_comma)) }
             additionButton.setOnClickListener { viewModel.actionTo(getString(R.string.string_plus)) }
             subtractionButton.setOnClickListener { viewModel.actionTo(getString(R.string.string_minus)) }
-            multiplicationButton.setOnClickListener { viewModel.actionTo(getString(R.string.string_multiply)) }
+            multiplyButton.setOnClickListener { viewModel.actionTo(getString(R.string.string_multiply)) }
             divisionButton.setOnClickListener { viewModel.actionTo(getString(R.string.string_divide)) }
             percentButton.setOnClickListener { viewModel.countPercent() }
             equalsButton.setOnClickListener { viewModel.equal() }
@@ -56,19 +55,19 @@ class MainActivity : AppCompatActivity(){
                 when(viewModel.buttonState){
                     getString(R.string.string_divide) -> {
                         binding.divisionButton.visibility = View.INVISIBLE
-                        binding.divisionButton2.visibility = View.VISIBLE
+                        binding.whiteDivisionButton.visibility = View.VISIBLE
                     }
                     getString(R.string.string_multiply) -> {
-                        binding.multiplicationButton.visibility = View.INVISIBLE
-                        binding.multiplicationButton2.visibility = View.VISIBLE
+                        binding.multiplyButton.visibility = View.INVISIBLE
+                        binding.whiteMultiplyButton.visibility = View.VISIBLE
                     }
                     getString(R.string.string_plus) -> {
                         binding.additionButton.visibility = View.INVISIBLE
-                        binding.additionButton2.visibility = View.VISIBLE
+                        binding.whiteAdditionButton.visibility = View.VISIBLE
                     }
                     getString(R.string.string_minus) -> {
                         binding.subtractionButton.visibility = View.INVISIBLE
-                        binding.subtractionButton2.visibility = View.VISIBLE
+                        binding.whiteSubtractionButton.visibility = View.VISIBLE
                     }
                 }
             }
@@ -76,19 +75,19 @@ class MainActivity : AppCompatActivity(){
                 when(viewModel.buttonState){
                     getString(R.string.string_divide) -> {
                         binding.divisionButton.visibility = View.VISIBLE
-                        binding.divisionButton2.visibility = View.INVISIBLE
+                        binding.whiteDivisionButton.visibility = View.INVISIBLE
                     }
                     getString(R.string.string_multiply) -> {
-                        binding.multiplicationButton.visibility = View.VISIBLE
-                        binding.multiplicationButton2.visibility = View.INVISIBLE
+                        binding.multiplyButton.visibility = View.VISIBLE
+                        binding.whiteMultiplyButton.visibility = View.INVISIBLE
                     }
                     getString(R.string.string_plus) -> {
                         binding.additionButton.visibility = View.VISIBLE
-                        binding.additionButton2.visibility = View.INVISIBLE
+                        binding.whiteAdditionButton.visibility = View.INVISIBLE
                     }
                     getString(R.string.string_minus) -> {
                         binding.subtractionButton.visibility = View.VISIBLE
-                        binding.subtractionButton2.visibility = View.INVISIBLE
+                        binding.whiteSubtractionButton.visibility = View.INVISIBLE
                     }
                 }
             }

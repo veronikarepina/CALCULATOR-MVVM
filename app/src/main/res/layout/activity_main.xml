@@ -13,430 +13,329 @@
         android:layout_height="0dp"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
-        android:fontFamily="@font/comfortaa_light"
         android:gravity="bottom|end"
+        android:fontFamily="@font/comfortaa_light"
         android:text="@string/string_zero"
         android:textColor="@color/white"
         android:textSize="75sp"
-        app:layout_constraintBottom_toTopOf="@+id/buttonsField"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/buttonsField"
-        android:layout_width="0dp"
-        android:layout_height="511dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/buttonsField"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.067" />
+
+    <LinearLayout
+        android:id="@+id/buttonsField"
+        android:layout_width="match_parent"
+        android:layout_height="511dp"
         android:layout_marginBottom="10dp"
-        app:layout_constraintVertical_bias="1.0">
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textResult">
 
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_weight="1"
+            android:baselineAligned="true"
+            android:orientation="horizontal">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:baselineAligned="false"
-                android:orientation="horizontal">
+                android:orientation="vertical"
+                tools:ignore="NestedWeights">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
+                <Button
+                    android:id="@+id/deleteButton"
+                    style="@style/lightGrayButton"
+                    android:text="@string/string_ac" />
+            </FrameLayout>
 
-                    <Button
-                        android:id="@+id/deleteButton"
-                        style="@style/lightGrayButton"
-                        android:text="@string/string_ac"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
-
-                    <Button
-                        android:id="@+id/signButton"
-                        style="@style/lightGrayButton"
-                        android:paddingLeft="22dp"
-                        app:icon="@drawable/plus_minus"
-                        app:iconSize="35dp"
-                        app:iconTint="@color/black"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
-
-                    <Button
-                        android:id="@+id/percentButton"
-                        style="@style/lightGrayButton"
-                        android:paddingLeft="22dp"
-                        app:icon="@drawable/percent"
-                        app:iconSize="35dp"
-                        app:iconTint="@color/black"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
-
-                    <FrameLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
-
-                        <Button
-                            android:id="@+id/divisionButton"
-                            style="@style/orangeButton"
-                            app:icon="@drawable/divide" />
-
-                        <Button
-                            android:id="@+id/divisionButton2"
-                            style="@style/orangeButton2"
-                            android:visibility="invisible"
-                            app:icon="@drawable/divide" />
-                    </FrameLayout>
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:baselineAligned="false"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
+                <Button
+                    android:id="@+id/signButton"
+                    style="@style/lightGrayButton"
+                    app:icon="@drawable/signs" />
+            </FrameLayout>
 
-                    <Button
-                        android:id="@+id/sevenButton"
-                        style="@style/darkGrayButton"
-                        android:text="@string/string_seven"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
-
-                    <Button
-                        android:id="@+id/eightButton"
-                        style="@style/darkGrayButton"
-                        android:text="@string/string_eight"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
-
-                    <Button
-                        android:id="@+id/nineButton"
-                        style="@style/darkGrayButton"
-                        android:text="@string/string_nine"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
-                    <FrameLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
-
-                        <Button
-                            android:id="@+id/multiplicationButton"
-                            style="@style/orangeButton"
-                            app:icon="@drawable/multiply"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"/>
-
-                        <Button
-                            android:id="@+id/multiplicationButton2"
-                            style="@style/orangeButton2"
-                            android:visibility="invisible"
-                            app:icon="@drawable/multiply"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"/>
-                    </FrameLayout>
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:baselineAligned="false"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
+                <Button
+                    android:id="@+id/percentButton"
+                    style="@style/lightGrayButton"
+                    app:icon="@drawable/percent" />
+            </FrameLayout>
 
-                    <Button
-                        android:id="@+id/fourButton"
-                        style="@style/darkGrayButton"
-                        android:text="@string/string_four"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
-
-                    <Button
-                        android:id="@+id/fiveButton"
-                        style="@style/darkGrayButton"
-                        android:text="@string/string_five"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
-
-                    <Button
-                        android:id="@+id/sixButton"
-                        style="@style/darkGrayButton"
-                        android:text="@string/string_six"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
-                    <FrameLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
-
-                        <Button
-                            android:id="@+id/subtractionButton"
-                            style="@style/orangeButton"
-                            app:icon="@drawable/minus" />
-
-                        <Button
-                            android:id="@+id/subtractionButton2"
-                            style="@style/orangeButton2"
-                            android:visibility="invisible"
-                            app:icon="@drawable/minus"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"/>
-                    </FrameLayout>
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:baselineAligned="false"
-                android:clipChildren="false"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
+                <Button
+                    android:id="@+id/divisionButton"
+                    style="@style/orangeButton"
+                    android:text="@string/string_divide"
+                    app:icon="@drawable/divide" />
 
-                    <Button
-                        android:id="@+id/oneButton"
-                        style="@style/darkGrayButton"
-                        android:text="@string/string_one"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                <Button
+                    android:id="@+id/whiteDivisionButton"
+                    style="@style/whiteButton"
+                    android:text="@string/string_divide"
+                    android:visibility="invisible"
+                    app:icon="@drawable/divide" />
+            </FrameLayout>
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
-
-                    <Button
-                        android:id="@+id/twoButton"
-                        style="@style/darkGrayButton"
-                        android:text="@string/string_two"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
-
-                    <Button
-                        android:id="@+id/threeButton"
-                        style="@style/darkGrayButton"
-                        android:text="@string/string_three"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
-                    <FrameLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
-
-                        <Button
-                            android:id="@+id/additionButton"
-                            style="@style/orangeButton"
-                            app:icon="@drawable/plus"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"/>
-
-                        <Button
-                            android:id="@+id/additionButton2"
-                            style="@style/orangeButton2"
-                            android:visibility="invisible"
-                            app:icon="@drawable/plus"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"/>
-                    </FrameLayout>
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:baselineAligned="false"
-                android:orientation="horizontal">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="2">
-
-                    <Button
-                        android:id="@+id/zeroButton"
-                        style="@style/bigZeroButton"
-                        android:text="@string/string_zero"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
-
-                    <Button
-                        android:id="@+id/floatButton"
-                        style="@style/darkGrayButton"
-                        android:text="@string/string_comma"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
-
-                    <Button
-                        android:id="@+id/equalsButton"
-                        style="@style/orangeButton"
-                        app:icon="@drawable/equal"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </LinearLayout>
         </LinearLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:baselineAligned="true"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                tools:ignore="NestedWeights">
+
+                <Button
+                    android:id="@+id/sevenButton"
+                    style="@style/darkGrayButton"
+                    android:fontFamily="@font/comfortaa"
+                    android:text="@string/string_seven" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <Button
+                    android:id="@+id/eightButton"
+                    style="@style/darkGrayButton"
+                    android:fontFamily="@font/comfortaa"
+                    android:text="@string/string_eight" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <Button
+                    android:id="@+id/nineButton"
+                    style="@style/darkGrayButton"
+                    android:fontFamily="@font/comfortaa"
+                    android:text="@string/string_nine" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <Button
+                    android:id="@+id/multiplyButton"
+                    style="@style/orangeButton"
+                    android:text="@string/string_multiply"
+                    app:icon="@drawable/multiply" />
+
+                <Button
+                    android:id="@+id/whiteMultiplyButton"
+                    style="@style/whiteButton"
+                    android:text="@string/string_multiply"
+                    android:visibility="invisible"
+                    app:icon="@drawable/multiply" />
+            </FrameLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:baselineAligned="true"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                tools:ignore="NestedWeights">
+
+                <Button
+                    android:id="@+id/fourButton"
+                    style="@style/darkGrayButton"
+                    android:fontFamily="@font/comfortaa"
+                    android:text="@string/string_four" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <Button
+                    android:id="@+id/fiveButton"
+                    style="@style/darkGrayButton"
+                    android:fontFamily="@font/comfortaa"
+                    android:text="@string/string_five" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <Button
+                    android:id="@+id/sixButton"
+                    style="@style/darkGrayButton"
+                    android:fontFamily="@font/comfortaa"
+                    android:text="@string/string_six" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <Button
+                    android:id="@+id/subtractionButton"
+                    style="@style/orangeButton"
+                    android:text="@string/string_minus"
+                    app:icon="@drawable/minus" />
+
+                <Button
+                    android:id="@+id/whiteSubtractionButton"
+                    style="@style/whiteButton"
+                    android:text="@string/string_minus"
+                    android:visibility="invisible"
+                    app:icon="@drawable/minus" />
+            </FrameLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:baselineAligned="true"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                tools:ignore="NestedWeights">
+
+                <Button
+                    android:id="@+id/oneButton"
+                    style="@style/darkGrayButton"
+                    android:fontFamily="@font/comfortaa"
+                    android:text="@string/string_one" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <Button
+                    android:id="@+id/twoButton"
+                    style="@style/darkGrayButton"
+                    android:fontFamily="@font/comfortaa"
+                    android:text="@string/string_two" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <Button
+                    android:id="@+id/threeButton"
+                    style="@style/darkGrayButton"
+                    android:fontFamily="@font/comfortaa"
+                    android:text="@string/string_three" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <Button
+                    android:id="@+id/additionButton"
+                    style="@style/orangeButton"
+                    android:text="@string/string_plus"
+                    app:icon="@drawable/plus" />
+
+                <Button
+                    android:id="@+id/whiteAdditionButton"
+                    style="@style/whiteButton"
+                    android:text="@string/string_plus"
+                    android:visibility="invisible"
+                    app:icon="@drawable/plus" />
+            </FrameLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:baselineAligned="true"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                tools:ignore="NestedWeights">
+
+                <Button
+                    android:id="@+id/zeroButton"
+                    style="@style/bigZeroButton"
+                    android:fontFamily="@font/comfortaa"
+                    android:text="@string/string_zero" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <Button
+                    android:id="@+id/floatButton"
+                    style="@style/darkGrayButton"
+                    android:text="@string/string_comma" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <Button
+                    android:id="@+id/equalsButton"
+                    style="@style/orangeButton"
+                    android:text="@string/string_equal"
+                    app:icon="@drawable/equal" />
+            </FrameLayout>
+        </LinearLayout>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
