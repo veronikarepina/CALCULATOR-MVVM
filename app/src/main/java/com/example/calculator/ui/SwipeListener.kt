@@ -1,4 +1,4 @@
-package com.example.calculator
+package com.example.calculator.ui
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -11,29 +11,36 @@ import kotlin.math.abs
 
 open class SwipeListener(context: Context): OnTouchListener {
     private var gestureDetector: GestureDetector
+
     companion object{
-        const val MIN_DISTANCE = 150
+        const val SWIPE_MIN_DISTANCE = 150
     }
+
     init {
         gestureDetector = GestureDetector(context, GestureListener())
     }
+
     private inner class GestureListener: SimpleOnGestureListener() {
+
         override fun onDown(p0: MotionEvent): Boolean {
             return true
         }
+
         override fun onFling(e1: MotionEvent, e2: MotionEvent, velocityX: Float, velocityY: Float): Boolean {
             val distanceX = e2.x - e1.x
-            if (abs(distanceX) > MIN_DISTANCE) {
+            if (abs(distanceX) > SWIPE_MIN_DISTANCE) {
                 onSwipe()
                 return true
             }
             return false
         }
     }
+
     @SuppressLint("ClickableViewAccessibility")
     override fun onTouch(v: View, event: MotionEvent): Boolean {
         return gestureDetector.onTouchEvent(event)
     }
+
     open fun onSwipe(){
     }
 }

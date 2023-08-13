@@ -22,4 +22,5 @@
     <string name="string_percent" translatable="false">%</string>
     <string name="string_sign" translatable="false">+-</string>
     <string name="string_comma" translatable="false">,</string>
+    <string name="string_point" translatable="false">.</string>
 </resources>
